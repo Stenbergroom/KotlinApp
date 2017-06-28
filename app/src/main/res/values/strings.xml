@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">KotlinTest</string>
+    <string name="main_endpoint">http://api.themoviedb.org</string>
+    <string name="message_exit_from_app">Please click back again to exit</string>
+</resources>
