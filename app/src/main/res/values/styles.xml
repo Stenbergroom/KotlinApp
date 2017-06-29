@@ -8,4 +8,81 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:spinnerDropDownItemStyle">@style/MyDropDownStyle</item>
+        <item name="android:spinnerStyle">@style/MySpinnerStyle</item>
+        <item name="android:windowDisablePreview">true</item>
+    </style>
+
+    <!--CheckBox style-->
+    <style name="CustomCheckBox">
+        <item name="android:theme">@style/CheckBoxAppTheme</item>
+    </style>
+
+    <style name="CheckBoxAppTheme">
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorControlNormal">@color/color_dividers_grey</item>
+        <item name="colorControlHighlight">@color/color_dividers_grey</item>
+        <item name="colorControlActivated">@color/colorAccent</item>
+    </style>
+
+    <!--Text styles-->
+    <style name="TextAppearance.PoppinsLight" parent="android:TextAppearance">
+        <item name="fontPath">fonts/Poppins-Light.ttf</item>
+    </style>
+
+    <style name="TextAppearance.PoppinsMedium" parent="android:TextAppearance">
+        <item name="fontPath">fonts/Poppins-Medium.ttf</item>
+    </style>
+
+    <style name="TextAppearance.PoppinsRegular" parent="android:TextAppearance">
+        <item name="fontPath">fonts/Poppins-Regular.ttf</item>
+    </style>
+
+    <style name="TextAppearance.PoppinsSemiBold" parent="android:TextAppearance">
+        <item name="fontPath">fonts/Poppins-SemiBold.ttf</item>
+    </style>
+
+    <!--Switch style-->
+    <style name="SwitchStyle" parent="Theme.AppCompat.Light">
+        <!-- active thumb & track color (30% transparency) -->
+        <item name="colorControlActivated">@color/colorAccent</item>
+
+        <!-- inactive thumb color -->
+        <item name="colorSwitchThumbNormal">#f1f1f1</item>
+
+        <!-- inactive track color (30% transparency) -->
+        <item name="android:colorForeground">#42221f1f</item>
+    </style>
+
+    <style name="CheckBoxStyle" parent="Base.Theme.AppCompat">
+        <!--<item name="colorAccent">@color/colorAccent</item>-->
+        <!--<item name="android:textColorSecondary">@color/text_color_semi_black</item>-->
+        <item name="colorControlNormal">@color/colorAccent</item>
+        <item name="colorControlActivated">@color/text_grey_semi_dark</item>
+    </style>
+
+    <!-- Spinner Style -->
+    <style name="MySpinnerStyle" parent="@android:style/Widget.Holo.Spinner">
+        <item name="android:padding">10dp</item>
+    </style>
+
+    <style name="MyDropDownStyle" parent="@android:style/Widget.Holo.DropDownItem.Spinner">
+        <item name="android:padding">10dp</item>
+        <item name="android:textColor">@color/color_grey_text</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+
 </resources>

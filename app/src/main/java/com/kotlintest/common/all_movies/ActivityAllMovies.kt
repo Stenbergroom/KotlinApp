@@ -1,5 +1,7 @@
 package com.kotlintest.common.all_movies
 
+import android.os.Bundle
+import com.kotlintest.R
 import com.kotlintest.common.BaseActivity
 
 /**
@@ -7,5 +9,10 @@ import com.kotlintest.common.BaseActivity
  */
 
 class ActivityAllMovies : BaseActivity() {
-
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_all_movies)
+    }
 }
+
+
