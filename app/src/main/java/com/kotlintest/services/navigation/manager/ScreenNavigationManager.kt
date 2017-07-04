@@ -11,14 +11,11 @@ import com.kotlintest.services.navigation.ScreenAnimType
 import com.kotlintest.services.navigation.ScreenType
 import com.kotlintest.services.navigation.factory.ScreenActivityFactory
 import com.kotlintest.services.navigation.factory.ScreenFragmentFactory
-import java.util.*
 
 class ScreenNavigationManager(private val activity: BaseActivity, private val savedInstanceState: Bundle?) : NavigationController {
 
     private val activityFactory: ScreenActivityFactory
     private val fragmentFactory: ScreenFragmentFactory
-
-    private val registrationSteps: MutableList<Screen> = ArrayList<Screen>()
 
     var activeScreen: Screen? = Screen.NONE
 
@@ -39,25 +36,25 @@ class ScreenNavigationManager(private val activity: BaseActivity, private val sa
 
     override fun navigateTo(screen: Screen, type: ScreenType, bundle: Bundle?) {
         when (type) {
-            ScreenType.ACTIVITY -> navigateToActivity(screen, bundle!!)
-            ScreenType.FRAGMENT -> navigateToFragment(screen, bundle!!)
-            ScreenType.OUTSIDE -> navigateToOutside(screen, bundle!!)
+            ScreenType.ACTIVITY -> navigateToActivity(screen, bundle)
+            ScreenType.FRAGMENT -> navigateToFragment(screen, bundle)
+            ScreenType.OUTSIDE -> navigateToOutside(screen, bundle)
         }
     }
 
-    private fun navigateToActivity(screen: Screen, bundle: Bundle) {
+    private fun navigateToActivity(screen: Screen, bundle: Bundle?) {
         when (screen) {
             Screen.ALL_MOVIES -> navigateToAllMovies(bundle)
         }
     }
 
-    private fun navigateToFragment(screen: Screen, bundle: Bundle) {
+    private fun navigateToFragment(screen: Screen, bundle: Bundle?) {
         when (screen) {
             Screen.BASE_FRAGMENT -> navigateToBaseFragment(bundle)
         }
     }
 
-    private fun navigateToOutside(screen: Screen, bundle: Bundle) {
+    private fun navigateToOutside(screen: Screen, bundle: Bundle?) {
         /*switch (screen) {
             case FACEBOOK:
                 navigateToFacebook(bundle);
@@ -82,7 +79,7 @@ class ScreenNavigationManager(private val activity: BaseActivity, private val sa
 
     // Activity
 
-    private fun navigateToAllMovies(bundle: Bundle) {
+    private fun navigateToAllMovies(bundle: Bundle?) {
         Log.d(TAG, "start AllMoviesActivity")
         activeScreen = Screen.ALL_MOVIES
         switchActivityScreen(Screen.ALL_MOVIES, bundle, ScreenAnimType.FADE_TYPE, true)
@@ -92,10 +89,9 @@ class ScreenNavigationManager(private val activity: BaseActivity, private val sa
 
     // Fragments
 
-    private fun navigateToBaseFragment(bundle: Bundle) {
+    private fun navigateToBaseFragment(bundle: Bundle?) {
         Log.d(TAG, "start BaseFragment")
         activeScreen = Screen.BASE_FRAGMENT
-        registrationSteps.add(activeScreen!!)
         switchFragmentScreen(Screen.BASE_FRAGMENT, bundle, false, false)
     }
 
@@ -163,10 +159,6 @@ class ScreenNavigationManager(private val activity: BaseActivity, private val sa
     private fun setInitialScreen(savedScreen: Screen) {
         switchFragmentScreen(savedScreen, null, false, true)
         activeScreen = savedScreen
-    }
-
-    fun getRegistrationSteps(): List<Screen> {
-        return registrationSteps
     }
 
     companion object {

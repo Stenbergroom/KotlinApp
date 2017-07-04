@@ -10,11 +10,14 @@ import android.util.Log
 import android.view.Window
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
+import com.afollestad.materialdialogs.MaterialDialog
+import com.kotlintest.R
 import com.kotlintest.services.eventbus.EventBusCreator
 import com.kotlintest.services.lifecycle.LifecycleManager
 import com.kotlintest.services.navigation.NavigationController
 import com.kotlintest.services.navigation.manager.ScreenNavigationBackManager
 import com.kotlintest.services.navigation.manager.ScreenNavigationManager
+import de.greenrobot.event.EventBus
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 
 /**
@@ -29,9 +32,11 @@ abstract class BaseActivity : AppCompatActivity() {
 
     var navigationController: NavigationController? = null
     var navigationManager: ScreenNavigationManager? = null
+    var eventBus = EventBusCreator.createDefault()
+    var lifecycleManager = LifecycleManager(eventBus, TAG)
 
-    val eventBus = EventBusCreator.createDefault()
-    val lifecycleManager = LifecycleManager(eventBus, TAG)
+    private var mProgressDialog: MaterialDialog? = null
+    private var isAvailable: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.i(TAG, " onCreate()" + if (savedInstanceState != null) " recreating" else "")
@@ -44,6 +49,25 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun attachBaseContext(newBase: Context) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase))
+    }
+
+    fun showProgressDialog() {
+        if (isAvailable) {
+            mProgressDialog = MaterialDialog.Builder(this)
+                    .content(R.string.loading_title)
+                    .widgetColorRes(R.color.colorAccent)
+                    .progress(true, 0)
+                    .cancelable(false)
+                    .show()
+            isAvailable = false
+        }
+    }
+
+    fun dismissProgressDialog() {
+        if (mProgressDialog != null) {
+            mProgressDialog?.dismiss()
+            isAvailable = true
+        }
     }
 
     override fun onStart() {
@@ -112,9 +136,6 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
-
-    val myFragmentManager: FragmentManager
-        get() = supportFragmentManager
 
     fun hideKeyboard() {
         try {

@@ -35,7 +35,11 @@ class PopupUtils {
             showCustomToast(activity, activity.getString(stringResId))
         }
 
-        fun showCustomToast(activity: Activity, message: String, gravity: Int = Gravity.CENTER) {
+        fun showCustomToast(activity: Activity, message: String) {
+            showCustomToast(activity, message, Gravity.CENTER)
+        }
+
+        fun showCustomToast(activity: Activity, message: String, gravity: Int) {
             if (Utils.isNullOrEmpty(message)) {
                 return
             }
