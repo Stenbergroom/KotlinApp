@@ -7,6 +7,7 @@ enum class Screen {
     NONE,
     //activites
     ALL_MOVIES,
+    MOVIE_DETAILS,
     //fragments
     BASE_FRAGMENT
 }

@@ -6,6 +6,7 @@ import android.content.Intent
 import com.kotlintest.KotlinApp
 import com.kotlintest.common.BaseActivity
 import com.kotlintest.common.all_movies.ActivityAllMovies
+import com.kotlintest.common.movie_details.ActivityMovieDetails
 import com.kotlintest.services.navigation.Screen
 
 
@@ -19,6 +20,7 @@ class ScreenActivityFactory {
     fun getActivityClassByType(type: Screen): Class<out Activity> {
         when (type) {
             Screen.ALL_MOVIES -> return ActivityAllMovies::class.java
+            Screen.MOVIE_DETAILS -> return ActivityMovieDetails::class.java
             else -> return BaseActivity::class.java
         }
     }

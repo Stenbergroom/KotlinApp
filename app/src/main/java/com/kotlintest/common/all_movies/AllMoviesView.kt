@@ -57,4 +57,12 @@ class AllMoviesView(
     override fun setMoviesContent(dataList: MutableList<Movie>?) {
         moviesAdapter?.setContent(dataList)
     }
+
+    override fun setMoreMoviesContent(dataList: MutableList<Movie>?) {
+        moviesAdapter?.setMoreContent(dataList)
+    }
+
+    override fun fetchMoviesAdapter(): MoviesAdapter? {
+        return moviesAdapter
+    }
 }

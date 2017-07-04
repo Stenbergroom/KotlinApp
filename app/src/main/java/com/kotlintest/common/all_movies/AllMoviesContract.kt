@@ -21,6 +21,10 @@ interface AllMoviesContract {
 
         fun setMoviesContent(dataList: MutableList<Movie>?)
 
+        fun setMoreMoviesContent(dataList: MutableList<Movie>?)
+
+        fun fetchMoviesAdapter(): MoviesAdapter?
+
     }
 
     interface Actions {

@@ -3,4 +3,7 @@
     <string name="main_endpoint">http://api.themoviedb.org</string>
     <string name="message_exit_from_app">Please click back again to exit</string>
     <string name="loading_title">Loading</string>
+    <string name="overview">Overview</string>
+    <string name="original_language">Original language</string>
+    <string name="release_date">Release date</string>
 </resources>

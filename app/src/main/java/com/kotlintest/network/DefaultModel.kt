@@ -11,7 +11,7 @@ import rx.schedulers.Schedulers
 
 class DefaultModel {
 
-    private var kotlinApi: KotlinAPI? = null
+    private var kotlinApi: KotlinAPI
 
     init {
         kotlinApi = RestService.createRestService()
@@ -26,13 +26,13 @@ class DefaultModel {
     }
 
     fun getMoviesList(apiKey: String, sortBy: String): Observable<MoviesResponse> {
-        return kotlinApi!!.getMovies(sortBy, apiKey)
+        return kotlinApi.getMovies(sortBy, apiKey)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
     }
 
     fun getMoviesList(apiKey: String, sortBy: String, page: Int): Observable<MoviesResponse> {
-        return kotlinApi!!.getMovies(sortBy, apiKey, page)
+        return kotlinApi.getMovies(sortBy, apiKey, page)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
     }

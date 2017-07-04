@@ -22,11 +22,6 @@ class ActivityAllMovies : BaseActivity() {
         allMoviesView = AllMoviesView(activity, eventBus)
         allMoviesPresenter = AllMoviesPresenter(activity as? BaseActivity, allMoviesView, eventBus)
     }
-
-    override fun onResume() {
-        super.onResume()
-        allMoviesPresenter?.setupList()
-    }
 }
 
 

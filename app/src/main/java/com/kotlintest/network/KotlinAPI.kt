@@ -12,7 +12,7 @@ interface KotlinAPI {
                   @Query("api_key") apiKey: String): Observable<MoviesResponse>
 
     @GET("/3/discover/movie")
-    fun getMovies(@Path("sort_by") sortBy: String,
-                  @Path("api_key") apiKey: String,
-                  @Path("page") page: Int): Observable<MoviesResponse>
+    fun getMovies(@Query("sort_by") sortBy: String,
+                  @Query("api_key") apiKey: String,
+                  @Query("page") page: Int): Observable<MoviesResponse>
 }

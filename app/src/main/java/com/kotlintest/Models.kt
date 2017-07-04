@@ -1,5 +1,7 @@
 package com.kotlintest
 
+import java.io.Serializable
+
 /**
  * Created by alex on 6/26/17.
  */
@@ -17,10 +19,9 @@ data class Movie(
         var backdrop_path: String,
         var adult: Boolean,
         var overview: String,
-        var release_date: String
-)
+        var release_date: String) : Serializable
 
 data class MoviesResponse(
         val page: Int,
         val total_results: Int,
-        val results: MutableList<Movie>)
+        val results: MutableList<Movie>) : Serializable

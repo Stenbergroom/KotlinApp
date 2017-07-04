@@ -45,6 +45,7 @@ class ScreenNavigationManager(private val activity: BaseActivity, private val sa
     private fun navigateToActivity(screen: Screen, bundle: Bundle?) {
         when (screen) {
             Screen.ALL_MOVIES -> navigateToAllMovies(bundle)
+            Screen.MOVIE_DETAILS -> navigateToMovieDetails(bundle)
         }
     }
 
@@ -85,6 +86,13 @@ class ScreenNavigationManager(private val activity: BaseActivity, private val sa
         switchActivityScreen(Screen.ALL_MOVIES, bundle, ScreenAnimType.FADE_TYPE, true)
         activity.hideKeyboard()
         activity.finish()
+    }
+
+    private fun navigateToMovieDetails(bundle: Bundle?) {
+        Log.d(TAG, "start MovieDetails")
+        activeScreen = Screen.MOVIE_DETAILS
+        switchActivityScreen(Screen.MOVIE_DETAILS, bundle, ScreenAnimType.FADE_TYPE, false)
+        activity.hideKeyboard()
     }
 
     // Fragments
