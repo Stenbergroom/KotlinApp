@@ -23,6 +23,49 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    productFlavors {
+        develop {
+            applicationId "com.kotlintest"
+//            versionCode 1
+//            versionName "0.1.0"
+            // Fetch the version according to git latest tag and "how far are we from last tag"
+            def longVersionName = "git -C ${rootDir} describe --tags --long".execute().text.trim()
+            printf("longVersionName - " + longVersionName + "\n")
+            def (fullVersionTag, versionBuild, gitSha) = longVersionName.tokenize('-')
+            printf("fullVersionTag - " + fullVersionTag + "\n")
+            printf("versionBuild - " + versionBuild + "\n")
+            printf("gitSha - " + gitSha + "\n")
+            def (versionMajor, versionMinor, versionPatch) = fullVersionTag.tokenize('.')
+            printf("versionMajor - " + versionMajor + "\n")
+            printf("versionMinor - " + versionMinor + "\n")
+            printf("versionPatch - " + versionPatch + "\n")
+            def (versionMajorNum) = versionMajor.tokenize('v')
+            printf("versionMajorNum - " + versionMajorNum + "\n")
+
+            def countOfCommits = versionBuild
+            if (versionMinor != null && countOfCommits < versionMinor) {
+                versionMinor = versionMinor.toInteger() + 1
+            }
+            versionPatch = countOfCommits
+            versionCode 1
+            //versionName "$versionMajorNum.$versionMinor.$versionPatch.$versionBuild"
+            versionName "$versionMajorNum.$versionMinor.$versionPatch"
+
+            // Friendly print the version output to the Gradle console
+            printf("\n--------" + "VERSION DATA--------" + "\n" + "- CODE: " + versionCode + "\n" +
+                    "- NAME: " + versionName + "\n----------------------------\n")
+        }
+        staging {
+            applicationId "com.kotlintest"
+            versionCode 1
+            versionName "0.1.0"
+        }
+        production {
+            applicationId "com.kotlintest"
+            versionCode 1
+            versionName "1.0.0"
+        }
+    }
 }
 
 dependencies {
