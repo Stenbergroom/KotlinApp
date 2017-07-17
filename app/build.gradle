@@ -47,7 +47,7 @@ android {
                 def (versionMajorNum) = versionMajor.tokenize('v')
                 printf("versionMajorNum - " + versionMajorNum + "\n")
 
-//            def countOfCommits = versionBuild
+            def countOfCommits = versionBuild
 //            if (versionMinor != null && countOfCommits < versionMinor) {
 //                versionMinor = versionMinor.toInteger() + 1
 //            }
