@@ -51,7 +51,8 @@ android {
 //            if (versionMinor != null && countOfCommits < versionMinor) {
 //                versionMinor = versionMinor.toInteger() + 1
 //            }
-                versionPatch = countOfCommits
+                versionPatch = versionPatch.toInteger()
+                versionPatch += countOfCommits.toInteger()
                 versionCode versionMajorNum.toInteger() + 1
                 //versionName "$versionMajorNum.$versionMinor.$versionPatch.$versionBuild"
                 if (versionServer == null) {
@@ -60,7 +61,7 @@ android {
                     versionName "$versionMajorNum.$versionMinor.$versionPatch.$versionServer"
                 }
             }
- 
+
             // Friendly print the version output to the Gradle console
             printf("\n--------" + "VERSION DATA--------" + "\n" + "- CODE: " + versionCode + "\n" +
                     "- NAME: " + versionName + "\n----------------------------\n")
