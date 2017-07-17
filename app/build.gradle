@@ -61,7 +61,7 @@ android {
                     versionName "$versionMajorNum.$versionMinor.$versionPatch.$versionServer"
                 }
             }
-
+ 
             // Friendly print the version output to the Gradle console
             printf("\n--------" + "VERSION DATA--------" + "\n" + "- CODE: " + versionCode + "\n" +
                     "- NAME: " + versionName + "\n----------------------------\n")
