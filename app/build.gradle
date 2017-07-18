@@ -31,36 +31,21 @@ android {
             def longVersionName = "git -C ${rootDir} describe --tags --long".execute().text.trim()
             // Fetch count of tags
             def countOfTags = ['sh', '-c', 'git tag | wc -l'].execute().text.trim()
-            printf("countOfTags - " + countOfTags + "\n")
             if (countOfTags.toInteger() != 0) {
-                printf("longVersionName - " + longVersionName + "\n")
                 def (fullVersionTag, versionBuild, gitSha) = longVersionName.tokenize('-')
-                printf("fullVersionTag - " + fullVersionTag + "\n")
-                printf("versionBuild - " + versionBuild + "\n")
-                printf("gitSha - " + gitSha + "\n")
                 def (versionMajor, versionMinor, versionPatch, versionServer) = fullVersionTag.tokenize('.')
-                printf("versionMajor - " + versionMajor + "\n")
-                printf("versionMinor - " + versionMinor + "\n")
-                printf("versionPatch - " + versionPatch + "\n")
-                printf("versionServer - " + versionServer + "\n")
                 def (versionMajorNum) = versionMajor.tokenize('v')
-                printf("versionMajorNum - " + versionMajorNum + "\n")
-
-            def countOfCommits = versionBuild
-//            if (versionMinor != null && countOfCommits < versionMinor) {
-//                versionMinor = versionMinor.toInteger() + 1
-//            }
+                def countOfCommits = versionBuild
                 versionPatch = versionPatch.toInteger()
                 versionPatch += countOfCommits.toInteger()
                 versionCode versionMajorNum.toInteger() + 1
-                //versionName "$versionMajorNum.$versionMinor.$versionPatch.$versionBuild"
                 if (versionServer == null) {
                     versionName "$versionMajorNum.$versionMinor.$versionPatch"
                 } else {
                     versionName "$versionMajorNum.$versionMinor.$versionPatch.$versionServer"
                 }
             }
-     
+
             // Friendly print the version output to the Gradle console
             printf("\n--------" + "VERSION DATA--------" + "\n" + "- CODE: " + versionCode + "\n" +
                     "- NAME: " + versionName + "\n----------------------------\n")
